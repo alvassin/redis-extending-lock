@@ -1,0 +1,95 @@
+name: tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  pylama:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - run: python -m pip install poetry
+      - run: poetry install
+      - run: poetry check -q
+      - run: poetry run pylama .
+        env:
+          FORCE_COLOR: 1
+      - run: poetry run unify --quote "'" --check-only --recursive redis_extending_lock tests
+        env:
+          FORCE_COLOR: 1
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - run: python -m pip install poetry
+      - run: poetry install
+      - run: poetry run mypy --install-types --non-interactive
+        env:
+          FORCE_COLOR: 1
+
+  tests:
+    runs-on: ubuntu-latest
+
+    services:
+      redis:
+        image: docker://bitnami/redis:6.0
+        ports:
+          - 6379:6379
+        env:
+          REDIS_PASSWORD: hackme
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        python:
+          - '3.7'
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup python${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: "${{ matrix.python }}"
+      - run: python -m pip install poetry
+      - run: poetry install --with=uvloop
+      - run: >-
+          poetry run pytest \
+            -vv \
+            --cov=redis_extending_lock \
+            --cov-report=term-missing \
+            --aiomisc-test-timeout=120 \
+            tests
+        env:
+          FORCE_COLOR: 1
+      - run: poetry run coveralls
+        env:
+          CI_REDIS_URL: redis://:hackme@localhost:6379/0
+          COVERALLS_PARALLEL: 'true'
+          COVERALLS_SERVICE_NAME: github
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  finish:
+    needs:
+       - tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true

@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "redis-reacquiring-lock"
+version = "0.1.0"
+description = "Reacquiring lock for redis"
+authors = ["Alexander Vasin <hi@alvass.in>"]
+license = "MIT"
+readme = "README.rst"
+packages = [{include = "redis_extending_lock"}]
+classifiers = [
+    'Development Status :: 3 - Alpha',
+    'Framework :: AsyncIO',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Natural Language :: English',
+    'Natural Language :: Russian',
+    'Operating System :: MacOS',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX :: Linux',
+    'Operating System :: POSIX',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: Implementation :: CPython',
+    'Topic :: Internet',
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+redis = "^4.5.1"
+aiomisc = "^17.0.6"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.2"
+aiomisc-pytest = "^1.1.1"
+gray = "^0.13.0"
+mypy = "^1.1.1"
+pylama = "^8.4.1"
+unify = "^0.5"
+pytest-cov = "^4.0.0"
+coveralls = "^3.3.1"
+
+[tool.poem-plugins.version]
+provider = "git"
+update_pyproject = true
+
+[tool.poem-plugins.version.git]
+format = "long"
+
+[tool.mypy]
+check_untyped_defs = true
+follow_imports = "silent"
+ignore_missing_imports = true
+no_implicit_reexport = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unused_configs = true
+files = [
+  "redis_extending_lock",
+  "tests"
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

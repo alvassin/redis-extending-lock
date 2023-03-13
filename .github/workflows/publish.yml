@@ -1,0 +1,39 @@
+name: publish
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  sdist:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Setup python3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
+
+      - name: Resetting git to master
+        run: git reset --hard master
+
+      - name: Resetting git to master
+        run: git fetch --unshallow --tags || true
+
+      - name: Install poetry
+        run: python3 -m pip install poetry
+
+      - name: Install poem-plugins
+        run: poetry self add poem-plugins
+
+      - name: Install package
+        run: poetry install
+
+      - name: Publishing to pypi
+        run: poetry publish --build
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
