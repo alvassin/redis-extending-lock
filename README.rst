@@ -66,12 +66,12 @@ Lock can be also used without context manager:
 How to develop
 ~~~~~~~~~~~~~~
 
-- `make devenv` - configure the development environment
-- `poetry shell` or `source .venv/bin/activate` - activate virtualenv
-- `make lint` - syntax & code style check
-- `make codestyle` - reformat code
-- `make test` - test this project
-- `make build` - build this project
+- ``make devenv`` - configure the development environment
+- ``poetry shell`` or `source .venv/bin/activate` - activate virtualenv
+- ``make lint`` - syntax & code style check
+- ``make codestyle`` - reformat code
+- ``make test`` - test this project
+- ``make build`` - build this project
 
 
 Versioning
