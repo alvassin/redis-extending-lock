@@ -12,21 +12,21 @@ all:
 	@exit 0
 
 clean:
-	rm -fr *.egg-info .tox dist .cache .mypy_cache .pytest_cache
+	rm -fr *.egg-info .tox dist .mypy_cache .pytest_cache
 	find . -iname '*.pyc' -delete
 
 devenv: clean
 	rm -rf $(POETRY_LOCATION)
 	poetry install
 
-codestyle:
-	poetry run gray *.py redis_extending_lock tests
-
 lint:
 	poetry check -q
 	poetry run pylama .
 	poetry run unify --quote "'" --check-only --recursive $(PROJECT_NAME) tests
 	poetry run mypy --install-types --non-interactive $(PROJECT_NAME) tests
+
+codestyle:
+	poetry run gray *.py redis_extending_lock tests
 
 test: clean lint
 	poetry run pytest --cov redis_extending_lock --cov-report term-missing
