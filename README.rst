@@ -45,7 +45,7 @@ Usage
             timeout=2,
             # optional, if not specified explicitly
             # would be half of timeout
-            reacquiring_timeout=1,
+            extend_interval=1,
             blocking_timeout=0,
         )
 
