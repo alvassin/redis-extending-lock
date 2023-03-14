@@ -9,7 +9,7 @@ as async context manager.
    :alt: Coveralls
 
 .. image:: https://github.com/alvassin/redis-extending-lock/workflows/tests/badge.svg
-   :target: https://github.com/alvassin/redis-extending-lock/actions?query=workflow%3Atests
+   :target: https://github.com/alvassin/redis-extending-lock/actions?query=workflow%3Atests+branch%3Amaster
    :alt: Actions
 
 .. image:: https://img.shields.io/pypi/v/redis-extending-lock.svg
