@@ -19,7 +19,7 @@ class ExtendingLock(Lock):
         name: Union[str, bytes, memoryview],
         *,
         timeout: float,
-        reacquire_interval: Optional[Union[int, float]] = None,
+        extend_interval: Optional[Union[int, float]] = None,
         **kwargs
     ):
         if timeout is None:
@@ -28,7 +28,7 @@ class ExtendingLock(Lock):
         super().__init__(redis, name, timeout=timeout, **kwargs)
 
         self._reacquire_interval = (
-            reacquire_interval if reacquire_interval is not None
+            extend_interval if extend_interval is not None
             else timeout * 0.5
         )
         self._lock = asyncio.Lock()
