@@ -16,6 +16,15 @@ as async context manager.
    :target: https://pypi.python.org/pypi/redis-extending-lock.svg/
    :alt: Latest Version
 
+.. image:: https://img.shields.io/pypi/wheel/redis-extending-lock.svg
+   :target: https://pypi.python.org/pypi/redis-extending-lock/
+
+.. image:: https://img.shields.io/pypi/pyversions/redis-extending-lock.svg
+   :target: https://pypi.python.org/pypi/redis-extending-lock/
+
+.. image:: https://img.shields.io/pypi/l/redis-extending-lock.svg
+   :target: https://pypi.python.org/pypi/redis-extending-lock/
+
 
 Usage
 ~~~~~
