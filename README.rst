@@ -5,7 +5,17 @@ Lock that prolongs itself from time to time and cancels current task if used
 as async context manager.
 
 .. image:: https://coveralls.io/repos/github/alvassin/redis-extending-lock/badge.svg?branch=master
-:target: https://coveralls.io/github/alvassin/redis-extending-lock?branch=master
+   :target: https://coveralls.io/github/alvassin/redis-extending-lock?branch=master
+   :alt: Coveralls
+
+.. image:: https://github.com/alvassin/redis-extending-lock/workflows/tests/badge.svg
+   :target: https://github.com/alvassin/redis-extending-lock/actions?query=workflow%3Atests
+   :alt: Actions
+
+.. image:: https://img.shields.io/pypi/v/redis-extending-lock.svg
+   :target: https://pypi.python.org/pypi/redis-extending-lock.svg/
+   :alt: Latest Version
+
 
 Usage
 ~~~~~
