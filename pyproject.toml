@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "redis-reacquiring-lock"
-version = "0.1.0"
+name = "redis-extending-lock"
+version = "0.0.1"
 description = "Reacquiring lock for redis"
 authors = ["Alexander Vasin <hi@alvass.in>"]
 license = "MIT"
@@ -46,9 +46,6 @@ coveralls = "^3.3.1"
 [tool.poem-plugins.version]
 provider = "git"
 update_pyproject = true
-
-[tool.poem-plugins.version.git]
-format = "long"
 
 [tool.mypy]
 check_untyped_defs = true
