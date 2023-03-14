@@ -40,6 +40,7 @@ class ExtendingLock(Lock):
             return
         if self._current_task.done():
             return
+        log.debug('Cancelling ctx manager task')
         self._current_task.cancel()
 
     async def reacquire(self) -> bool:
