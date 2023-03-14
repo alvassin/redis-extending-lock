@@ -4,6 +4,9 @@ Redis extending lock
 Lock that prolongs itself from time to time and cancels current task if used
 as async context manager.
 
+.. image:: https://coveralls.io/repos/github/alvassin/redis-extending-lock/badge.svg?branch=master
+:target: https://coveralls.io/github/alvassin/redis-extending-lock?branch=master
+
 Usage
 ~~~~~
 
